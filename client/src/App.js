@@ -28,8 +28,16 @@ const authLnk = setContext((_, { headers }) => {
   };
 });
 
+const appClient = new ApolloClient({
+  // Set up our client to execute the `authLnk` middleware prior to making the request to our GraphQL API
+  link: authLnk.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
+
+    
     <Router>
       <>
         <Navbar />
