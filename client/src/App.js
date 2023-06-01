@@ -16,6 +16,18 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const authLnk = setContext((_, { headers }) => {
+  // get the auth token from local storage if it exists
+  const tkn = localStorage.getItem('id_token');
+  // return the headers to the context   
+  return {
+    headers: {
+      ...headers,
+      authorization: tkn ? `Bearer ${tkn}` : '',
+    },
+  };
+});
+
 function App() {
   return (
     <Router>
