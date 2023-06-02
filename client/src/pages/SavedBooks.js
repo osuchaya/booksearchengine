@@ -13,7 +13,7 @@ import { removeBookId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
-import { removeBookId } from '../utils/localStorage';
+
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_USER);
@@ -41,7 +41,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if ( loading ) {
     return <h2>LOADING...</h2>;
   }
 
