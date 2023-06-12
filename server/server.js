@@ -15,7 +15,7 @@ const server = new ApolloServer({
 });
 const PORT = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if we're in production, serve client/build as static assets
@@ -35,6 +35,7 @@ const startApolloServer = async () => {
 
 db.once('open', () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
+  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 })};
 
 startApolloServer();
